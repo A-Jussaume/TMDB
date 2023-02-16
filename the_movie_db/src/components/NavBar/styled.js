@@ -6,12 +6,12 @@ export const Header = styled.header`
   background-color: rgb(15 23 42);
   position: sticky;
   top: 0;
+  z-index: 10;
 `
 export const Container = styled.div`
-  width: 66.66%;
+  max-width: 1280px;
   margin: auto;
   display: flex;
-  /* justify-content: space-between; */
 `
 export const Nav = styled.nav`
   display: flex;

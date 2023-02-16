@@ -1,10 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import NavBar from './components/NavBar';
 import Home from './pages/home';
-import Films from './pages/films';
+import PopularFilms from './pages/films/PopularFilms';
+import NowPlayingFilms from './pages/films/NowPlayingFilms';
+import TopRatedFilms from './pages/films/TopRatedFilms';
+import UpComingFilms from './pages/films/UpComingFilms';
 import Series from './pages/series';
 import Artistes from './pages/artistes';
 
@@ -22,31 +26,19 @@ const LinkSeries = [
 ]
 
 function App() {
-  
-  const [filmsCategory, setFilmsCategory] = useState(localStorage.getItem("filmsCategory") ? localStorage.getItem("filmsCategory") : "");
-  localStorage.setItem("filmsCategory", filmsCategory);
-
-  const [seriesCategory, setSeriesCategory] = useState(localStorage.getItem("seriesCategory") ? localStorage.getItem("seriesCategory") : "");
-  localStorage.setItem("seriesCategory", seriesCategory);
-
-  const [filmsApiParam, setFilmsApiParam] = useState(localStorage.getItem("filmsApiParam") ? localStorage.getItem("filmsApiParam") : "");
-  localStorage.setItem("filmsApiParam", filmsApiParam);
-
-  const [seriesApiParam, setSeriesApiParam] = useState(localStorage.getItem("seriesApiParam") ? localStorage.getItem("seriesApiParam") : "");
-  localStorage.setItem("seriesApiParam", seriesApiParam);
-
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<NavBar filmsCategory={setFilmsCategory} filmsApiParam={setFilmsApiParam} seriesCategory={setSeriesCategory} seriesApiParam={setSeriesApiParam} />}>
+        <Route path="/" element={<NavBar />}>
           <Route index element={<Home />} />
-          {LinkFilms.map((url) => (
-            <Route key={url} path={url} element={<Films category={filmsCategory} apiParam={filmsApiParam}/>} />
-          ))}
-          {LinkSeries.map((url) => (
-            <Route key={url} path={url} element={<Series category={seriesCategory} apiParam={seriesApiParam}/>} />
-          ))}
+            <Route path='films/populaires' element={<PopularFilms />} />
+            <Route path='films/du-moment' element={<NowPlayingFilms/>} />
+            <Route path='films/à-venir' element={<UpComingFilms/>} />
+            <Route path='films/mieux-notés' element={<TopRatedFilms/>} />
+          {/* {LinkSeries.map((url) => (
+            <Route key={url} path={url} element={<Series category={seriesCategory} apiParam={seriesApiParam} />} />
+          ))} */}
           <Route path="/artistes/populaires" element={<Artistes />} />
         </Route>
       </Routes>

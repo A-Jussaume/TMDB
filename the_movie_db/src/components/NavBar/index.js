@@ -16,19 +16,19 @@ import { WrapperRight } from "./styled";
 import { Form } from "./styled";
 
 const LinkFilms = [
-  ['films/populaires', 'populaires', 'popular'],
-  ['films/du-moment', 'du moment', 'now_playing'],
-  ['films/à-venir', 'à venir', 'upcoming'],
-  ['films/mieux-notés', 'les mieux notés', 'top_rated']
+  ['films/populaires', 'populaires'],
+  ['films/du-moment', 'du moment'],
+  ['films/à-venir', 'à venir'],
+  ['films/mieux-notés', 'les mieux notés']
 ]
 const LinkSeries = [
-  ['séries/populaires', 'populaires', 'popular'],
-  ['séries/aujour"hui', 'diffusées aujourd"hui', 'airing_today'],
-  ['séries/en-cours', 'en cours de diffusion', 'on_the_air'],
-  ['séries/mieux-notées', 'les mieux notées', 'top_rated']
+  ['séries/populaires', 'populaires'],
+  ['séries/aujour"hui', 'diffusées aujourd"hui',],
+  ['séries/en-cours', 'en cours de diffusion'],
+  ['séries/mieux-notées', 'les mieux notées']
 ]
 
-const NavBar = ({ filmsCategory, filmsApiParam, seriesCategory, seriesApiParam }) => {
+const NavBar = () => {
   return (
     <>
       <Header>
@@ -38,16 +38,16 @@ const NavBar = ({ filmsCategory, filmsApiParam, seriesCategory, seriesApiParam }
             <WrapperLinks>
               <NavButton>Films</NavButton>
               <NavLinksMenu>
-                {LinkFilms.map(([url, category, ApiParam]) => (
-                  <LinksMenu to={url} key={category} onClick={() => { filmsCategory(category); filmsApiParam(ApiParam); }}>{category}</LinksMenu>
+                {LinkFilms.map(([url, category]) => (
+                  <LinksMenu to={url} key={category}>{category}</LinksMenu>
                 ))}
               </NavLinksMenu>
             </WrapperLinks>
             <WrapperLinks>
               <NavButton>Émissions télévisées</NavButton>
               <NavLinksMenu>
-                {LinkSeries.map(([url, category, ApiParam]) => (
-                  <LinksMenu to={url} key={category} onClick={() => { seriesCategory(category); seriesApiParam(ApiParam); }}>{category}</LinksMenu>
+                {LinkSeries.map(([url, category]) => (
+                  <LinksMenu to={url} key={category}>{category}</LinksMenu>
                 ))}
               </NavLinksMenu>
             </WrapperLinks>
